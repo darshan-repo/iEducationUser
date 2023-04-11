@@ -20,12 +20,11 @@ class DataBaseHelper {
   static userData({required Map<String, dynamic> data}) {
     String key = firebaseDatabase.push().key!;
     data["key"] = key;
-    firebaseDatabase.child("UserData").child(key).set(data);
+    firebaseDatabase.child("userData").child(key).set(data);
   }
 
   static Future<void> loginData() async {
-    DataSnapshot response = await firebaseDatabase.child("UserData").get();
-    // debugPrint("  response  ===> $response");
+    DataSnapshot response = await firebaseDatabase.child("userData").get();
     Map data = response.value as Map? ?? {};
     userDataList.clear();
     data.forEach(
@@ -42,7 +41,7 @@ class DataBaseHelper {
   }
 
   static Future<void> profileData() async {
-    DataSnapshot response = await firebaseDatabase.child("UserData").get();
+    DataSnapshot response = await firebaseDatabase.child("userData").get();
     Map data = response.value as Map? ?? {};
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     var userMobileNumber = prefs.get(
