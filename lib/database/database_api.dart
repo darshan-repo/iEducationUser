@@ -294,7 +294,7 @@ class AttendenceApi {
       .ref('attendence');
   static List<Attendence> attendenceDataList = [];
   static attendenceAddData({required Attendence obj}) async {
-    await db.child(obj.key.toString()).set(obj.toJson());
+    await db.child(obj.stream.toString()).child(obj.key.toString()).set(obj.toJson());
   }
 
   static fetchData() async {

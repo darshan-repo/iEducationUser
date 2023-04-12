@@ -1,4 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:user/common/pref_util.dart';
 import 'package:user/login_screen.dart';
 import 'package:user/navigation/constants.dart';
 import 'package:user/navigation/navigator.dart';
@@ -25,8 +26,12 @@ class AppNavigation {
   static final AppNavigation shared = AppNavigation();
 
   goNextFromSplash() async {
-    final SharedPreferences pref = await SharedPreferences.getInstance();
-    if (pref.getString('userMobileNumber') != null) {
+    if (SharedPref.getIsScanned != null) {
+      if (DateTime.parse(SharedPref.getScannedDate!) != DateTime.now()) {
+        SharedPref.setIsScanned = false;
+      }
+    }
+    if (SharedPref.getMobileNumber != null) {
       await NavigationUtilities.pushReplacementNamed(HomeScreenBottomBar.route,
           type: RouteType.up);
     } else {

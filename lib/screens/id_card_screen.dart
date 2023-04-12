@@ -44,7 +44,6 @@ class _IdCardScreenState extends State<IdCardScreen> {
                       Padding(
                         padding: EdgeInsets.only(top: 0.15.sh),
                         child: Container(
-                          // height: 0.5555.sh,
                           height: 0.5554.sh,
                           decoration: BoxDecoration(
                             color: primarycolor,
@@ -60,16 +59,16 @@ class _IdCardScreenState extends State<IdCardScreen> {
                       Padding(
                         padding: EdgeInsets.only(top: 0.14.sh, left: 0.20.sw),
                         child: Container(
-                          height: MediaQuery.of(context).size.height * 0.05,
-                          width: MediaQuery.of(context).size.width * 0.15,
+                          height: 0.05.sh,
+                          width: 0.15.sw,
                           color: background,
                         ),
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 0.15.sh, left: 0.148.sw),
                         child: Container(
-                          height: MediaQuery.of(context).size.height * 0.09,
-                          width: MediaQuery.of(context).size.width * 0.1,
+                          height: 0.09.sh,
+                          width: 0.1.sw,
                           decoration: BoxDecoration(
                             color: primarycolor,
                             borderRadius: const BorderRadius.only(
@@ -81,16 +80,16 @@ class _IdCardScreenState extends State<IdCardScreen> {
                       Padding(
                         padding: EdgeInsets.only(top: 0.14.sh, left: 0.58.sw),
                         child: Container(
-                          height: MediaQuery.of(context).size.height * 0.05,
-                          width: MediaQuery.of(context).size.width * 0.1,
+                          height: 0.05.sh,
+                          width: 0.1.sw,
                           color: background,
                         ),
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 0.15.sh, left: 0.6185.sw),
                         child: Container(
-                          height: MediaQuery.of(context).size.height * 0.09,
-                          width: MediaQuery.of(context).size.width * 0.1,
+                          height: 0.09.sh,
+                          width: 0.1.sw,
                           decoration: BoxDecoration(
                             color: primarycolor,
                             borderRadius: const BorderRadius.only(

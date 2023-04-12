@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:user/navigation/app_navigation.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -12,22 +13,12 @@ class SplashScreen extends StatefulWidget {
 
 class SplashScreenState extends State<SplashScreen> {
   @override
-  void initState() {
+  initState() {
     super.initState();
     Timer(
       const Duration(seconds: 3),
       () async {
         await AppNavigation.shared.goNextFromSplash();
-        // final pref = await SharedPreferences.getInstance();
-        // if (!mounted) return;
-        // Navigator.pushReplacement(
-        //   context,
-        //   MaterialPageRoute(
-        //     builder: (context) => pref.getString('userMobileNumber') != null
-        //         ? const HomeScreenBottomBar()
-        //         : const LoginScreen(),
-        //   ),
-        // );
       },
     );
   }

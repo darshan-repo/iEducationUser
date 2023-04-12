@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:user/common/pref_util.dart';
 import 'package:user/common/textfields.dart';
 import 'package:user/constant.dart';
 import 'package:user/data/database_service.dart';
@@ -132,10 +133,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   element.mobilNumber == mobileNumber.text)) {
                                 if (DataBaseHelper.userDataList.any((element) =>
                                     element.password == password.text)) {
-                                  final SharedPreferences prefs =
-                                      await SharedPreferences.getInstance();
-                                  await prefs.setString(
-                                      "userMobileNumber", mobileNumber.text);
+                                      SharedPref.setMobileNumber =mobileNumber.text;
+                                 
                                   // if (!mounted) return;
                                   AppNavigation.shared.goNextFromSplash();
                                   // Navigator.of(context).pushReplacement(
