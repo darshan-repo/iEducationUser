@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:user/common/pref_util.dart';
 import 'package:user/common/textfields.dart';
 import 'package:user/constant.dart';

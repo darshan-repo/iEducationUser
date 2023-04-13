@@ -16,6 +16,7 @@ import 'package:user/screens/notice/general_notice.dart';
 import 'package:user/screens/notice/job_vacancy_notice.dart';
 import 'package:user/screens/notice/notice_screen.dart';
 import 'package:user/screens/notice/sport_notice.dart';
+import 'package:user/screens/qr_screen.dart';
 import 'package:user/screens/result_screen.dart';
 import 'package:user/screens/staff_list/staff_profile.dart';
 import 'package:user/screens/staff_list/stafflist_screen.dart';
@@ -89,6 +90,10 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case HomeScreenBottomBar.route:
       screen = const HomeScreenBottomBar();
       break;
+    case QrScannerScreen.route:
+      screen = const QrScannerScreen();
+      break;
+
     case StudentProfileScreen.route:
       screen = const StudentProfileScreen();
       break;

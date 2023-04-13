@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:user/common/pref_util.dart';
 import 'package:user/database/database_api.dart';
 import 'package:user/database/database_model.dart';
 import 'package:user/model/model.dart';
@@ -16,6 +17,7 @@ class DataBaseHelper {
   static List<Course> viewCourseData = [];
   static List<TimeTable> viewTimeTableData = [];
   static List<Assignment> viewAssignmentData = [];
+  static Attendence? viewAttendenceData;
 
   static userData({required Map<String, dynamic> data}) {
     String key = firebaseDatabase.push().key!;
@@ -77,10 +79,9 @@ class DataBaseHelper {
     List<Assignment> dummyAssignment = [];
 
 // **** Student Profile ****
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     for (var mobile in StudentDataApi.studentDataList) {
-      if (prefs.getString('userMobileNumber') == mobile.phoneNo) {
+      if (SharedPref.getMobileNumber == mobile.phoneNo) {
         dummyStudent = mobile;
       }
     }
@@ -143,11 +144,13 @@ class DataBaseHelper {
     viewAssignmentData.clear();
     viewCourseData.clear();
     viewTimeTableData.clear();
+    viewAttendenceData=null;
     StudentDataApi.studentDataList.clear();
     ResultApi.resultDataList.clear();
     MaterialApi.materialsDataList.clear();
     CourseApi.courseDataList.clear();
     AssignmentApi.assignmentDataList.clear();
     TimeTableApi.timeTableDataList.clear();
+    AttendenceApi.attendenceDataList.clear();
   }
 }

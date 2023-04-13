@@ -14,29 +14,20 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool animate = false;
-  double opacity = 0.1;
   bool isProfileLoading = true;
   @override
   void initState() {
     profileData();
-    startAnimation();
     super.initState();
-  }
-
-  Future startAnimation() async {
-    await Future.delayed(const Duration(milliseconds: 1000));
-    setState(() {
-      animate = true;
-      opacity = 1;
-    });
   }
 
   Future<void> profileData() async {
     isProfileLoading = true;
     await DataBaseHelper.filterData();
     isProfileLoading = false;
-    setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   @override
@@ -145,108 +136,91 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                  AnimatedPositioned(
-                    duration: const Duration(milliseconds: 1000),
-                    top: animate ? 0.23.sh : 0.15.sh,
-                    child: AnimatedOpacity(
-                      opacity: opacity,
-                      curve: Curves.easeIn,
-                      duration: const Duration(milliseconds: 600),
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                          // top: 0.23.sh,
-                          left: 0.02.sh,
-                          right: 0.02.sh,
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: 0.23.sh,
+                      left: 0.02.sh,
+                      right: 0.02.sh,
+                    ),
+                    child: Card(
+                      shape: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(0.015.sh),
+                        borderSide: BorderSide(color: background),
+                      ),
+                      elevation: 5,
+                      child: Container(
+                        height: 0.3.sh,
+                        width: 0.415.sh,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(0.015.sh),
+                          color: background,
                         ),
-                        child: Card(
-                          shape: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(0.015.sh),
-                            borderSide: BorderSide(color: background),
-                          ),
-                          elevation: 5,
-                          child: Container(
-                            height: 0.3.sh,
-                            width: 0.415.sh,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(0.015.sh),
-                              color: background,
-                            ),
-                            child: Row(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    HomeTopWidget(
-                                      title: "ID Card",
-                                      icon: "assets/icons/id-card.png",
-                                      onPress: () async {
-                                        AppNavigation.shared
-                                            .movetoStudentIDCard();
-                                        setState(() {});
-                                      },
-                                    ),
-                                    HomeTopWidget(
-                                      title: "Material",
-                                      icon: "assets/icons/syllbus.png",
-                                      onPress: () async {
-                                        AppNavigation.shared
-                                            .movetoMaterialScreen();
-                                        setState(() {});
-                                      },
-                                    ),
-                                  ],
+                                HomeTopWidget(
+                                  title: "ID Card",
+                                  icon: "assets/icons/id-card.png",
+                                  onPress: () async {
+                                    AppNavigation.shared.movetoStudentIDCard();
+                                    setState(() {});
+                                  },
                                 ),
-                                Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    HomeTopWidget(
-                                      title: "Course",
-                                      icon: "assets/icons/course.png",
-                                      onPress: () {
-                                        AppNavigation.shared
-                                            .movetoCourseScreen();
-                                        setState(() {});
-                                      },
-                                    ),
-                                    HomeTopWidget(
-                                      title: "Notice",
-                                      icon: "assets/icons/notice.png",
-                                      onPress: () {
-                                        AppNavigation.shared
-                                            .movetoNoticeScreen();
-                                      },
-                                    ),
-                                  ],
-                                ),
-                                Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    HomeTopWidget(
-                                      title: "Teaching",
-                                      icon: "assets/icons/teachingwork.png",
-                                      onPress: () {
-                                        AppNavigation.shared
-                                            .movetoTeachingWork();
-                                        setState(() {});
-                                      },
-                                    ),
-                                    HomeTopWidget(
-                                      title: "Time Table",
-                                      icon: "assets/icons/timetable.png",
-                                      onPress: () {
-                                        AppNavigation.shared
-                                            .movetoTimeTableScreen();
-                                      },
-                                    ),
-                                  ],
+                                HomeTopWidget(
+                                  title: "Material",
+                                  icon: "assets/icons/syllbus.png",
+                                  onPress: () async {
+                                    AppNavigation.shared.movetoMaterialScreen();
+                                    setState(() {});
+                                  },
                                 ),
                               ],
                             ),
-                          ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                HomeTopWidget(
+                                  title: "Course",
+                                  icon: "assets/icons/course.png",
+                                  onPress: () {
+                                    AppNavigation.shared.movetoCourseScreen();
+                                    setState(() {});
+                                  },
+                                ),
+                                HomeTopWidget(
+                                  title: "Notice",
+                                  icon: "assets/icons/notice.png",
+                                  onPress: () {
+                                    AppNavigation.shared.movetoNoticeScreen();
+                                  },
+                                ),
+                              ],
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                HomeTopWidget(
+                                  title: "Teaching",
+                                  icon: "assets/icons/teachingwork.png",
+                                  onPress: () {
+                                    AppNavigation.shared.movetoTeachingWork();
+                                    setState(() {});
+                                  },
+                                ),
+                                HomeTopWidget(
+                                  title: "Time Table",
+                                  icon: "assets/icons/timetable.png",
+                                  onPress: () {
+                                    AppNavigation.shared
+                                        .movetoTimeTableScreen();
+                                  },
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -437,7 +411,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   ),
                                   Text(
-                                    '47.90%',
+                                    '${DataBaseHelper.viewAttendenceData?.attendence ?? 0}%',
                                     style: TextStyle(
                                       fontSize:
                                           MediaQuery.of(context).size.width *

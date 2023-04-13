@@ -1,4 +1,3 @@
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:user/common/pref_util.dart';
 import 'package:user/login_screen.dart';
 import 'package:user/navigation/constants.dart';
@@ -15,19 +14,23 @@ import 'package:user/screens/notice/general_notice.dart';
 import 'package:user/screens/notice/job_vacancy_notice.dart';
 import 'package:user/screens/notice/notice_screen.dart';
 import 'package:user/screens/notice/sport_notice.dart';
+import 'package:user/screens/qr_screen.dart';
 import 'package:user/screens/result_screen.dart';
 import 'package:user/screens/staff_list/staff_profile.dart';
 import 'package:user/screens/staff_list/stafflist_screen.dart';
 import 'package:user/screens/teaching_work_screen.dart';
 import 'package:user/screens/time_table/time_table_screen.dart';
 import 'package:user/student_profile/student_profile_screen.dart';
+import 'package:user/utils.dart';
 
 class AppNavigation {
   static final AppNavigation shared = AppNavigation();
 
   goNextFromSplash() async {
+    DateTime currentDate = DateTime.now();
     if (SharedPref.getIsScanned != null) {
-      if (DateTime.parse(SharedPref.getScannedDate!) != DateTime.now()) {
+      if (!(currentDate
+          .isSameDate(DateTime.parse(SharedPref.getScannedDate!)))) {
         SharedPref.setIsScanned = false;
       }
     }
@@ -43,6 +46,11 @@ class AppNavigation {
   void movetoStudentProfileScreen() {
     NavigationUtilities.pushNamed(StudentProfileScreen.route,
         type: RouteType.left);
+  }
+
+  void moveToQrScreen() {
+    NavigationUtilities.pushReplacementNamed(QrScannerScreen.route,
+        type: RouteType.up);
   }
 
   void movetoStudentIDCard() {

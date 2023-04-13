@@ -85,7 +85,7 @@ class Student {
 // **** Attendence ****
 class Attendence {
   String? name, stream, semester, image;
-  double? attendence;
+  num? attendence;
   int? key;
 
   Attendence({
@@ -97,7 +97,7 @@ class Attendence {
     this.key,
   });
 
-  factory Attendence.fromJson(Map<String, dynamic> json) => Attendence(
+  factory Attendence.fromJson(Map<dynamic, dynamic> json) => Attendence(
         attendence: json['attendence'],
         stream: json['stream'],
         image: json['image'],

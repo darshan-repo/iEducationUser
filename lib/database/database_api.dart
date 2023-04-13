@@ -294,14 +294,29 @@ class AttendenceApi {
       .ref('attendence');
   static List<Attendence> attendenceDataList = [];
   static attendenceAddData({required Attendence obj}) async {
-    await db.child(obj.stream.toString()).child(obj.key.toString()).set(obj.toJson());
+    await db
+        .child(obj.stream.toString())
+        .child(obj.key.toString())
+        .set(obj.toJson());
   }
 
   static fetchData() async {
     attendenceDataList.clear();
     await db.once().then((value) {
-      Map data = value.snapshot.value as Map? ?? {};
-      // data.forEach((key, value) { })
+      Map data =
+          value.snapshot.value == null ? {} : value.snapshot.value as Map;
+      data.forEach((key, value) {
+        value.forEach((key, value) {
+          attendenceDataList.add(Attendence.fromJson(value));
+        });
+      });
     });
+  }
+
+  static attendenceUpdateData({required Attendence obj}) async {
+    await db
+        .child(obj.stream.toString())
+        .child(obj.key.toString())
+        .set(obj.toJson());
   }
 }
