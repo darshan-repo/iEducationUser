@@ -70,6 +70,7 @@ class DataBaseHelper {
     await CourseApi.fetchData();
     await TimeTableApi.fetchData();
     await AssignmentApi.fetchData();
+    await AttendenceApi.fetchData();
 
     Student? dummyStudent;
     List<Result> dummyResult = [];
@@ -77,6 +78,7 @@ class DataBaseHelper {
     List<Course> dummyCourse = [];
     List<TimeTable> dummyTimeTable = [];
     List<Assignment> dummyAssignment = [];
+    Attendence? dummyAttendence;
 
 // **** Student Profile ****
 
@@ -87,11 +89,21 @@ class DataBaseHelper {
     }
     viewStudentData = dummyStudent;
 
+    // *** Attendednce ***
+    for (var attendence in AttendenceApi.attendenceDataList) {
+      if (viewStudentData?.key == attendence.key) {
+        dummyAttendence = attendence;
+        print('--------------->${dummyAttendence.toJson()}');
+      }
+    }
+    viewAttendenceData = dummyAttendence;
+
 // **** Result ****
 
     for (var result in ResultApi.resultDataList) {
-      if ((viewStudentData!.stream == result.stream) &&
-          (viewStudentData!.semester == result.semester)) {
+      if ((viewStudentData?.stream == result.stream) &&
+          (viewStudentData?.semester == result.semester)) {
+        viewResultData.clear();
         dummyResult.add(result);
       }
     }
@@ -100,8 +112,9 @@ class DataBaseHelper {
 // **** Material ****
 
     for (var material in MaterialApi.materialsDataList) {
-      if ((viewStudentData!.stream == material.stream) &&
-          (viewStudentData!.semester == material.semester)) {
+      if ((viewStudentData?.stream == material.stream) &&
+          (viewStudentData?.semester == material.semester)) {
+        viewMaterialData.clear();
         dummyMaterial.add(material);
       }
     }
@@ -110,16 +123,18 @@ class DataBaseHelper {
 // **** Course ****
 
     for (var course in CourseApi.courseDataList) {
-      if ((viewStudentData!.stream == course.stream) &&
-          (viewStudentData!.semester == course.semester)) {
+      if ((viewStudentData?.stream == course.stream) &&
+          (viewStudentData?.semester == course.semester)) {
+        viewCourseData.clear();
         dummyCourse.add(course);
       }
     }
     viewCourseData = dummyCourse;
-
+    // **** Assignment ****
     for (var assignment in AssignmentApi.assignmentDataList) {
-      if ((viewStudentData!.stream == assignment.stream) &&
-          (viewStudentData!.semester == assignment.semester)) {
+      if ((viewStudentData?.stream == assignment.stream) &&
+          (viewStudentData?.semester == assignment.semester)) {
+        viewAssignmentData.clear();
         dummyAssignment.add(assignment);
       }
     }
@@ -128,8 +143,9 @@ class DataBaseHelper {
 // **** Time Table ****
     for (var timeTable in TimeTableApi.timeTableDataList) {
       for (var timeTableData in timeTable.tb) {
-        if ((viewStudentData!.stream == timeTableData.stream) &&
-            (viewStudentData!.semester == timeTableData.semester)) {
+        if ((viewStudentData?.stream == timeTableData.stream) &&
+            (viewStudentData?.semester == timeTableData.semester)) {
+          viewTimeTableData.clear();
           dummyTimeTable.add(timeTableData);
         }
       }
@@ -138,13 +154,11 @@ class DataBaseHelper {
   }
 
   static clearAllData() {
-    viewStudentData;
     viewResultData.clear();
     viewMaterialData.clear();
     viewAssignmentData.clear();
     viewCourseData.clear();
     viewTimeTableData.clear();
-    viewAttendenceData=null;
     StudentDataApi.studentDataList.clear();
     ResultApi.resultDataList.clear();
     MaterialApi.materialsDataList.clear();

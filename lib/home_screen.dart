@@ -25,9 +25,9 @@ class _HomeScreenState extends State<HomeScreen> {
     isProfileLoading = true;
     await DataBaseHelper.filterData();
     isProfileLoading = false;
-    if (mounted) {
-      setState(() {});
-    }
+    // if (mounted) {
+    setState(() {});
+    // }
   }
 
   @override
