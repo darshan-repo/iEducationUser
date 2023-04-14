@@ -28,6 +28,16 @@ class _QrScannerScreenState extends State<QrScannerScreen> {
     return Future.value(true);
   }
 
+  @override
+  void initState() {
+    fetchData();
+    super.initState();
+  }
+
+  void fetchData() async {
+    await DataBaseHelper.filterData();
+  }
+
   Barcode? result;
   final qrKey = GlobalKey();
   QRViewController? controller;
@@ -71,7 +81,6 @@ class _QrScannerScreenState extends State<QrScannerScreen> {
 
       if (expectedCodes == int.parse(scanData.code!)) {
         print('If call');
-        await DataBaseHelper.filterData();
         SharedPref.setIsScanned = true;
         SharedPref.setScannedDate = DateTime.now().toString();
         if (DataBaseHelper.viewAttendenceData?.key !=
