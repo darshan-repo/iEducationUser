@@ -31,12 +31,9 @@ class IEducationUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final deviceHeight = MediaQuery.of(context).size.height;
-    // final deviceWidth = MediaQuery.of(context).size.width;
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light.copyWith(statusBarColor: primarycolor),
       child: ScreenUtilInit(
-        // designSize: const Size(360, 720),
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) => GestureDetector(

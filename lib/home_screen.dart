@@ -417,7 +417,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                           MediaQuery.of(context).size.width *
                                               0.04,
                                       fontWeight: FontWeight.bold,
-                                      color: primarycolor,
+                                      color: (DataBaseHelper.viewAttendenceData!
+                                                  .attendence! <
+                                              70)
+                                          ? Colors.red
+                                          : ((DataBaseHelper.viewAttendenceData!
+                                                          .attendence! >=
+                                                      70) &&
+                                                  (DataBaseHelper
+                                                          .viewAttendenceData!
+                                                          .attendence! <
+                                                      85))
+                                              ? Colors.orange
+                                              : Colors.green,
                                     ),
                                   ),
                                 ],
