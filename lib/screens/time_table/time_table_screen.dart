@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:user/common/appbar.dart';
+import 'package:user/common/widget_animation.dart/fade_animation.dart';
 import 'package:user/constant.dart';
 import 'package:user/data/database_service.dart';
 import 'package:user/screens/time_table/time_table_widget.dart';
@@ -29,6 +31,8 @@ class _TimeTableScreenState extends State<TimeTableScreen> {
     setState(() {});
   }
 
+  List<Map<String, dynamic>> personalDetails = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,47 +59,45 @@ class _TimeTableScreenState extends State<TimeTableScreen> {
                     itemCount: DataBaseHelper.viewTimeTableData.length,
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Card(
-                          elevation: 5,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Column(
-                              children: [
-                                TimeTableColumn(
-                                  title: "Subject Name",
-                                  value: DataBaseHelper
-                                      .viewTimeTableData[index].lectureName,
-                                ),
-                                TimeTableColumn(
-                                  title: "Stream",
-                                  value: DataBaseHelper
-                                      .viewTimeTableData[index].stream,
-                                ),
-                                TimeTableColumn(
-                                  title: "Semester",
-                                  value: DataBaseHelper
-                                      .viewTimeTableData[index].semester,
-                                ),
-                                TimeTableColumn(
-                                  title: "Lecture Start Time",
-                                  value: DataBaseHelper.viewTimeTableData[index]
-                                      .lectureStartTime,
-                                ),
-                                TimeTableColumn(
-                                  title: "Lecture End Time",
-                                  value: DataBaseHelper
-                                      .viewTimeTableData[index].lectureEndTime,
-                                ),
-                                TimeTableColumn(
-                                  title: "Lecture Date",
-                                  value: DataBaseHelper
-                                      .viewTimeTableData[index].lectureDate,
-                                ),
-                              ],
+                        padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
+                        child: animation(
+                          context,
+                          seconds: 700,
+                          verticalOffset: -50,
+                          child: Card(
+                            color: background,
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Column(
+                                children: [
+                                  TimeTableColumn(
+                                    title: "Subject Name",
+                                    value: DataBaseHelper
+                                        .viewTimeTableData[index].lectureName,
+                                  ),
+                                  TimeTableColumn(
+                                    title: "Lecture Start Time",
+                                    value: DataBaseHelper
+                                        .viewTimeTableData[index]
+                                        .lectureStartTime,
+                                  ),
+                                  TimeTableColumn(
+                                    title: "Lecture End Time",
+                                    value: DataBaseHelper
+                                        .viewTimeTableData[index]
+                                        .lectureEndTime,
+                                  ),
+                                  TimeTableColumn(
+                                    title: "Lecture Date",
+                                    value: DataBaseHelper
+                                        .viewTimeTableData[index].lectureDate,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

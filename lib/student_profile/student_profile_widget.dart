@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:user/common/widget_animation.dart/fade_animation.dart';
 import 'package:user/constant.dart';
 
 class StudentProfileWidgetScreen extends StatelessWidget {
@@ -17,11 +18,16 @@ class StudentProfileWidgetScreen extends StatelessWidget {
       child: Column(
         children: List.generate(
           args.length,
-          (index) => commonTile(context,
-              title: args[index]['title'],
-              value: args[index]['subTitle'],
-              length: args.length,
-              index: index),
+          (index) => animation(
+            context,
+            seconds: 700,
+            horizontalOffset: -100,
+            child: commonTile(context,
+                title: args[index]['title'],
+                value: args[index]['subTitle'],
+                length: args.length,
+                index: index),
+          ),
         ),
       ),
     );

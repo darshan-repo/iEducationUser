@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:user/common/appbar.dart';
+import 'package:user/common/widget_animation.dart/fade_animation.dart';
 import 'package:user/constant.dart';
 import 'package:user/navigation/app_navigation.dart';
 
@@ -25,63 +26,99 @@ class _NoticeScreenState extends State<NoticeScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              NoticeCard(
-                title: "Culture Festival",
-                icon: "assets/icons/culture_festival.png",
-                onPress: () {
-                  AppNavigation.shared.movetoCulturalFestivalNotice();
-                  setState(() {});
-                },
+              animation(
+                context,
+                seconds: 500,
+                horizontalOffset: -100,
+                verticalOffset: 100,
+                child: NoticeCard(
+                  title: "Culture Festival",
+                  icon: "assets/icons/culture_festival.png",
+                  onPress: () {
+                    AppNavigation.shared.movetoCulturalFestivalNotice();
+                    setState(() {});
+                  },
+                ),
               ),
-              NoticeCard(
-                title: "College Activity",
-                icon: "assets/icons/college_activity.png",
-                onPress: () {
-                  AppNavigation.shared.movetoCollegeActivityNotice();
-                  setState(() {});
-                },
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              NoticeCard(
-                title: "Sports",
-                icon: "assets/icons/sport.png",
-                onPress: () {
-                  AppNavigation.shared.movetoSportsNotice();
-                  setState(() {});
-                },
-              ),
-              NoticeCard(
-                title: "Competitive Exam",
-                icon: "assets/icons/exam.png",
-                onPress: () {
-                  AppNavigation.shared.movetoCompatitiveExamNotice();
-                  setState(() {});
-                },
+              animation(
+                context,
+                seconds: 500,
+                horizontalOffset: 100,
+                verticalOffset: -100,
+                child: NoticeCard(
+                  title: "College Activity",
+                  icon: "assets/icons/college_activity.png",
+                  onPress: () {
+                    AppNavigation.shared.movetoCollegeActivityNotice();
+                    setState(() {});
+                  },
+                ),
               ),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              NoticeCard(
-                title: "Job Vacancy",
-                icon: "assets/icons/job_vacancy.png",
-                onPress: () {
-                  AppNavigation.shared.movetoJobVacancynotice();
-                  setState(() {});
-                },
+              animation(
+                context,
+                seconds: 500,
+                horizontalOffset: -100,
+                verticalOffset: 100,
+                child: NoticeCard(
+                  title: "Sports",
+                  icon: "assets/icons/sport.png",
+                  onPress: () {
+                    AppNavigation.shared.movetoSportsNotice();
+                    setState(() {});
+                  },
+                ),
               ),
-              NoticeCard(
-                title: "General",
-                icon: "assets/icons/general.png",
-                onPress: () {
-                  AppNavigation.shared.movetoGeneralNotice();
-                  setState(() {});
-                },
+              animation(
+                context,
+                seconds: 500,
+                horizontalOffset: 100,
+                verticalOffset: -100,
+                child: NoticeCard(
+                  title: "Competitive Exam",
+                  icon: "assets/icons/exam.png",
+                  onPress: () {
+                    AppNavigation.shared.movetoCompatitiveExamNotice();
+                    setState(() {});
+                  },
+                ),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              animation(
+                context,
+                seconds: 500,
+                horizontalOffset: -100,
+                verticalOffset: 100,
+                child: NoticeCard(
+                  title: "Job Vacancy",
+                  icon: "assets/icons/job_vacancy.png",
+                  onPress: () {
+                    AppNavigation.shared.movetoJobVacancynotice();
+                    setState(() {});
+                  },
+                ),
+              ),
+              animation(
+                context,
+                seconds: 500,
+                horizontalOffset: 100,
+                verticalOffset: -100,
+                child: NoticeCard(
+                  title: "General",
+                  icon: "assets/icons/general.png",
+                  onPress: () {
+                    AppNavigation.shared.movetoGeneralNotice();
+                    setState(() {});
+                  },
+                ),
               ),
             ],
           ),

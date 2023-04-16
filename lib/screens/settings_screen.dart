@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:user/common/widget_animation.dart/fade_animation.dart';
 import 'package:user/constant.dart';
 import 'package:user/data/database_service.dart';
 import 'package:user/login_screen.dart';
@@ -57,29 +58,34 @@ class _SettingScreenState extends State<SettingScreen> {
                     ),
                   ),
                   sizedBox,
-                  Row(
-                    children: [
-                      DataBaseHelper.viewStudentData == null
-                          ? Container()
-                          : CircleAvatar(
-                              radius: 30,
-                              backgroundColor: kOtherColor,
-                              backgroundImage: NetworkImage(
-                                DataBaseHelper.viewStudentData!.image,
+                  animation(
+                    context,
+                    seconds: 500,
+                    horizontalOffset: -10,
+                    child: Row(
+                      children: [
+                        DataBaseHelper.viewStudentData == null
+                            ? Container()
+                            : CircleAvatar(
+                                radius: 30,
+                                backgroundColor: kOtherColor,
+                                backgroundImage: NetworkImage(
+                                  DataBaseHelper.viewStudentData!.image,
+                                ),
                               ),
-                            ),
-                      kWidthSizedBox,
-                      DataBaseHelper.viewStudentData == null
-                          ? Container()
-                          : Text(
-                              '${DataBaseHelper.viewStudentData!.fName} ${DataBaseHelper.viewStudentData!.mName}',
-                              style: const TextStyle(
-                                fontSize: 25,
-                                color: kOtherColor,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            )
-                    ],
+                        kWidthSizedBox,
+                        DataBaseHelper.viewStudentData == null
+                            ? Container()
+                            : Text(
+                                '${DataBaseHelper.viewStudentData!.fName} ${DataBaseHelper.viewStudentData!.mName}',
+                                style: const TextStyle(
+                                  fontSize: 25,
+                                  color: kOtherColor,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              )
+                      ],
+                    ),
                   ),
                   sizedBox,
                   Card(
@@ -95,72 +101,78 @@ class _SettingScreenState extends State<SettingScreen> {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(20),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SettingWidget(
-                              title: "Assignment",
-                              icon: "assets/icons/assignment.png",
-                              onPress: () {
-                                AppNavigation.shared.movetoAssignmentScreen();
-                                setState(() {});
-                              },
-                            ),
-                            const Divider(),
-                            SettingWidget(
-                              title: "Results",
-                              icon: "assets/icons/results.png",
-                              onPress: () {
-                                AppNavigation.shared.movetoResultScreen();
-                              },
-                            ),
-                            const Divider(),
-                            SettingWidget(
-                              title: "Course",
-                              icon: "assets/icons/course.png",
-                              onPress: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const CourseScreen(),
-                                  ),
-                                );
-                              },
-                            ),
-                            const Divider(),
-                            SettingWidget(
-                              title: "Staff List",
-                              icon: "assets/icons/staff.png",
-                              onPress: () {
-                                AppNavigation.shared.movetoStaffListcreen();
-                                setState(() {});
-                              },
-                            ),
-                            const Divider(),
-                            SettingWidget(
-                              title: "Fees",
-                              icon: "assets/icons/fees.png",
-                              onPress: () {},
-                            ),
-                            const Divider(),
-                            SettingWidget(
-                              title: "Logout",
-                              icon: "assets/icons/logout.png",
-                              onPress: () async {
-                                DataBaseHelper.clearAllData();
-                                SharedPreferences pref =
-                                    await SharedPreferences.getInstance();
-                                pref.remove("userMobileNumber");
-                                // ignore: use_build_context_synchronously
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const LoginScreen(),
-                                  ),
-                                );
-                              },
-                            ),
-                          ],
+                        child: animation(
+                          context,
+                          seconds: 500,
+                          horizontalOffset: -10,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SettingWidget(
+                                title: "Assignment",
+                                icon: "assets/icons/assignment.png",
+                                onPress: () {
+                                  AppNavigation.shared.movetoAssignmentScreen();
+                                  setState(() {});
+                                },
+                              ),
+                              const Divider(),
+                              SettingWidget(
+                                title: "Results",
+                                icon: "assets/icons/results.png",
+                                onPress: () {
+                                  AppNavigation.shared.movetoResultScreen();
+                                },
+                              ),
+                              const Divider(),
+                              SettingWidget(
+                                title: "Course",
+                                icon: "assets/icons/course.png",
+                                onPress: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const CourseScreen(),
+                                    ),
+                                  );
+                                },
+                              ),
+                              const Divider(),
+                              SettingWidget(
+                                title: "Staff List",
+                                icon: "assets/icons/staff.png",
+                                onPress: () {
+                                  AppNavigation.shared.movetoStaffListcreen();
+                                  setState(() {});
+                                },
+                              ),
+                              const Divider(),
+                              SettingWidget(
+                                title: "Fees",
+                                icon: "assets/icons/fees.png",
+                                onPress: () {},
+                              ),
+                              const Divider(),
+                              SettingWidget(
+                                title: "Logout",
+                                icon: "assets/icons/logout.png",
+                                onPress: () async {
+                                  DataBaseHelper.clearAllData();
+                                  SharedPreferences pref =
+                                      await SharedPreferences.getInstance();
+                                  pref.remove("userMobileNumber");
+                                  // ignore: use_build_context_synchronously
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const LoginScreen(),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

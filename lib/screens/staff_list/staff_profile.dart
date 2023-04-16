@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:user/common/appbar.dart';
 import 'package:user/common/cashed_network_image.dart';
+import 'package:user/common/widget_animation.dart/fade_animation.dart';
 import 'package:user/constant.dart';
 import 'package:user/database/database_api.dart';
 import 'package:user/screens/staff_list/staff_profile_widget.dart';
@@ -27,41 +28,48 @@ class _StaffProfileScreenState extends State<StaffProfileScreen> {
             notification.disallowIndicator();
             return true;
           },
-          child: ListView(
-            children: [
-              Center(
-                child: cachedNetworkImage(context,
-                    imageUrl:
-                        StaffListApi.staffDataList[widget.args['index']].image),
-              ),
-              sizedBox,
-              StaffProfileWidgetScreen(
-                  title: "Name",
-                  value: StaffListApi.staffDataList[widget.args['index']].name),
-              StaffProfileWidgetScreen(
-                  title: "Email ID",
-                  value:
-                      StaffListApi.staffDataList[widget.args['index']].email),
-              StaffProfileWidgetScreen(
-                  title: "Contact No",
-                  value:
-                      StaffListApi.staffDataList[widget.args['index']].phoneNo),
-              StaffProfileWidgetScreen(
-                  title: "Post",
-                  value: StaffListApi.staffDataList[widget.args['index']].post),
-              StaffProfileWidgetScreen(
-                  title: "Subject",
-                  value:
-                      StaffListApi.staffDataList[widget.args['index']].subject),
-              StaffProfileWidgetScreen(
-                  title: "Experience",
-                  value: StaffListApi
-                      .staffDataList[widget.args['index']].experience),
-              StaffProfileWidgetScreen(
-                  title: "Degree",
-                  value:
-                      StaffListApi.staffDataList[widget.args['index']].degree),
-            ],
+          child: animation(
+            context,
+            seconds: 1000,
+            verticalOffset: 0.1,
+            child: ListView(
+              children: [
+                Center(
+                  child: cachedNetworkImage(context,
+                      imageUrl: StaffListApi
+                          .staffDataList[widget.args['index']].image),
+                ),
+                sizedBox,
+                StaffProfileWidgetScreen(
+                    title: "Name",
+                    value:
+                        StaffListApi.staffDataList[widget.args['index']].name),
+                StaffProfileWidgetScreen(
+                    title: "Email ID",
+                    value:
+                        StaffListApi.staffDataList[widget.args['index']].email),
+                StaffProfileWidgetScreen(
+                    title: "Contact No",
+                    value: StaffListApi
+                        .staffDataList[widget.args['index']].phoneNo),
+                StaffProfileWidgetScreen(
+                    title: "Post",
+                    value:
+                        StaffListApi.staffDataList[widget.args['index']].post),
+                StaffProfileWidgetScreen(
+                    title: "Subject",
+                    value: StaffListApi
+                        .staffDataList[widget.args['index']].subject),
+                StaffProfileWidgetScreen(
+                    title: "Experience",
+                    value: StaffListApi
+                        .staffDataList[widget.args['index']].experience),
+                StaffProfileWidgetScreen(
+                    title: "Degree",
+                    value: StaffListApi
+                        .staffDataList[widget.args['index']].degree),
+              ],
+            ),
           ),
         ),
       ),

@@ -80,27 +80,29 @@ class AssignmentScreenState extends State<AssignmentScreen> {
                   },
                   child: ListView.builder(
                     itemCount: DataBaseHelper.viewAssignmentData.length,
-                    itemBuilder: (context, index) => Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: GestureDetector(
-                        onTap: () {
-                          indexs.removeAt(0);
-                          indexs.insert(1, index);
-                          setState(() {
-                            DataBaseHelper.viewAssignmentData[indexs[0]]
-                                .isShowButton = false;
-                            DataBaseHelper.viewAssignmentData[index]
-                                .isShowButton = DataBaseHelper
-                                        .viewAssignmentData[index]
-                                        .isShowButton ==
-                                    false
-                                ? true
-                                : false;
-                          });
-                        },
+                    itemBuilder: (context, index) => GestureDetector(
+                      onTap: () {
+                        indexs.removeAt(0);
+                        indexs.insert(1, index);
+                        setState(() {
+                          DataBaseHelper.viewAssignmentData[indexs[0]]
+                              .isShowButton = false;
+                          DataBaseHelper.viewAssignmentData[index]
+                              .isShowButton = DataBaseHelper
+                                      .viewAssignmentData[index].isShowButton ==
+                                  false
+                              ? true
+                              : false;
+                        });
+                      },
+                      child: animation(
+                        context,
+                        seconds: 500,
+                        verticalOffset: -50,
                         child: Card(
                           color: background,
-                          elevation: 5,
+                          elevation: 3,
+                          margin: const EdgeInsets.fromLTRB(10, 5, 10, 5),
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
                             child: Column(

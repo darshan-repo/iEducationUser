@@ -132,16 +132,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                   element.mobilNumber == mobileNumber.text)) {
                                 if (DataBaseHelper.userDataList.any((element) =>
                                     element.password == password.text)) {
-                                      SharedPref.setMobileNumber =mobileNumber.text;
-                                 
-                                  // if (!mounted) return;
+                                  SharedPref.setMobileNumber =
+                                      mobileNumber.text;
                                   AppNavigation.shared.goNextFromSplash();
-                                  // Navigator.of(context).pushReplacement(
-                                  //   MaterialPageRoute(
-                                  //     builder: (context) =>
-                                  //         const HomeScreenBottomBar(),
-                                  //   ),
-                                  // );
                                 } else {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(

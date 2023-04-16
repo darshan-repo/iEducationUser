@@ -71,16 +71,11 @@ class _QrScannerScreenState extends State<QrScannerScreen> {
   }
 
   void _onQRViewCreated(QRViewController controller) {
-    print('-------------->>>---------> i Am Reloading');
     this.controller = controller;
     int masterFlag = 0, slaveFlag = 0;
     const expectedCodes = 1234567;
     controller.scannedDataStream.listen((scanData) async {
-      print(
-          'Hello I Am Controller And Listening.......listening ...... listening.....');
-
       if (expectedCodes == int.parse(scanData.code!)) {
-        print('If call');
         SharedPref.setIsScanned = true;
         SharedPref.setScannedDate = DateTime.now().toString();
         if (DataBaseHelper.viewAttendenceData?.key !=
@@ -101,7 +96,6 @@ class _QrScannerScreenState extends State<QrScannerScreen> {
           controller.dispose();
           await AppNavigation.shared.goNextFromSplash();
         } else {
-          print('else Called');
           if (slaveFlag == 0) {
             Attendence obj = Attendence(
               name: DataBaseHelper.viewAttendenceData!.name,

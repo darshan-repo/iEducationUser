@@ -14,6 +14,7 @@ PreferredSizeWidget appbar(
       style: const TextStyle(
         fontSize: 20,
         color: Colors.white,
+        fontFamily: 'Times New Roman',
       ),
     ),
     elevation: 0,

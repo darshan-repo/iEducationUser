@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:user/constant.dart';
 
 class StaffProfileWidgetScreen extends StatelessWidget {
   const StaffProfileWidgetScreen(
@@ -21,14 +22,15 @@ class StaffProfileWidgetScreen extends StatelessWidget {
               style: Theme.of(context)
                   .textTheme
                   .titleMedium!
-                  .copyWith(color: Colors.black, fontSize: 16),
+                  .copyWith(color: primarycolor, fontSize: 16),
             ),
             const SizedBox(height: 5),
             Text(value, style: Theme.of(context).textTheme.bodySmall),
             const SizedBox(height: 5),
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.9,
-              child: const Divider(
+              child: Divider(
+                color: background,
                 thickness: 1.0,
               ),
             ),

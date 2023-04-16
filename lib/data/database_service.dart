@@ -93,7 +93,6 @@ class DataBaseHelper {
     for (var attendence in AttendenceApi.attendenceDataList) {
       if (viewStudentData?.key == attendence.key) {
         dummyAttendence = attendence;
-        print('--------------->${dummyAttendence.toJson()}');
       }
     }
     viewAttendenceData = dummyAttendence;
