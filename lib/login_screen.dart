@@ -128,14 +128,19 @@ class _LoginScreenState extends State<LoginScreen> {
                         MaterialButton(
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
-                              if (DataBaseHelper.userDataList.any((element) =>
-                                  element.mobilNumber == mobileNumber.text)) {
-                                if (DataBaseHelper.userDataList.any((element) =>
-                                    element.password == password.text)) {
+                              bool isLogin = false;
+                              for (var element in DataBaseHelper.userDataList) {
+                                if (element.mobilNumber == mobileNumber.text &&
+                                    element.password == password.text) {
                                   SharedPref.setMobileNumber =
                                       mobileNumber.text;
                                   AppNavigation.shared.goNextFromSplash();
-                                } else {
+                                  isLogin = true;
+                                }
+                              }
+                              if (isLogin == false) {
+                                if (DataBaseHelper.userDataList.any((element) =>
+                                    element.mobilNumber == mobileNumber.text)) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: const Align(
@@ -155,28 +160,77 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ),
                                     ),
                                   );
-                                }
-                              } else {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: const Align(
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        "Invalid mobile Number",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold),
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: const Align(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          "Invalid mobile Number",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
                                       ),
+                                      backgroundColor: Colors.red[200],
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      margin: const EdgeInsets.all(20),
+                                      behavior: SnackBarBehavior.floating,
                                     ),
-                                    backgroundColor: Colors.red[200],
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                    margin: const EdgeInsets.all(20),
-                                    behavior: SnackBarBehavior.floating,
-                                  ),
-                                );
+                                  );
+                                }
                               }
+                              //     if (DataBaseHelper.userDataList.any((element) =>
+                              //         element.mobilNumber == mobileNumber.text)) {
+                              //       if (DataBaseHelper.userDataList.any((element) =>
+                              //           element.password == password.text)) {
+                              //         SharedPref.setMobileNumber =
+                              //             mobileNumber.text;
+                              //         AppNavigation.shared.goNextFromSplash();
+                              //       } else {
+                              //         ScaffoldMessenger.of(context).showSnackBar(
+                              //           SnackBar(
+                              //             content: const Align(
+                              //               alignment: Alignment.center,
+                              //               child: Text(
+                              //                 "Wrong password",
+                              //                 style: TextStyle(
+                              //                     color: Colors.white,
+                              //                     fontWeight: FontWeight.bold),
+                              //               ),
+                              //             ),
+                              //             backgroundColor: Colors.red[200],
+                              //             margin: const EdgeInsets.all(20),
+                              //             behavior: SnackBarBehavior.floating,
+                              //             shape: RoundedRectangleBorder(
+                              //               borderRadius: BorderRadius.circular(20),
+                              //             ),
+                              //           ),
+                              //         );
+                              //       }
+                              //     } else {
+                              //       ScaffoldMessenger.of(context).showSnackBar(
+                              //         SnackBar(
+                              //           content: const Align(
+                              //             alignment: Alignment.center,
+                              //             child: Text(
+                              //               "Invalid mobile Number",
+                              //               style: TextStyle(
+                              //                   color: Colors.white,
+                              //                   fontWeight: FontWeight.bold),
+                              //             ),
+                              //           ),
+                              //           backgroundColor: Colors.red[200],
+                              //           shape: RoundedRectangleBorder(
+                              //             borderRadius: BorderRadius.circular(20),
+                              //           ),
+                              //           margin: const EdgeInsets.all(20),
+                              //           behavior: SnackBarBehavior.floating,
+                              //         ),
+                              //       );
+                              //     }
                             }
                           },
                           minWidth: MediaQuery.of(context).size.width * 0.5,
