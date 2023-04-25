@@ -29,8 +29,7 @@ class _IdCardScreenState extends State<IdCardScreen> {
           padding: const EdgeInsets.all(20),
           child: animation(
             context,
-            seconds: 1000,
-            verticalOffset: 0.1,
+            seconds: 500,
             child: Card(
               elevation: 5,
               shape: RoundedRectangleBorder(

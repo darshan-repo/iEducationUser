@@ -6,6 +6,7 @@ import 'package:user/data/database_service.dart';
 import 'package:user/login_screen.dart';
 import 'package:user/navigation/app_navigation.dart';
 import 'package:user/screens/course_screen.dart';
+import 'package:user/screens/fees_screen.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({Key? key}) : super(key: key);
@@ -151,24 +152,119 @@ class _SettingScreenState extends State<SettingScreen> {
                               SettingWidget(
                                 title: "Fees",
                                 icon: "assets/icons/fees.png",
-                                onPress: () {},
+                                onPress: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const FeesScreen(),
+                                    ),
+                                  );
+                                },
                               ),
                               const Divider(),
                               SettingWidget(
                                 title: "Logout",
                                 icon: "assets/icons/logout.png",
                                 onPress: () async {
-                                  DataBaseHelper.clearAllData();
-                                  SharedPreferences pref =
-                                      await SharedPreferences.getInstance();
-                                  pref.remove("userMobileNumber");
-                                  // ignore: use_build_context_synchronously
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const LoginScreen(),
-                                    ),
-                                  );
+                                  showDialog(
+                                      barrierDismissible: false,
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          backgroundColor: background,
+                                          title: Row(
+                                            children: [
+                                              Icon(
+                                                Icons.logout,
+                                                color: primarycolor,
+                                              ),
+                                              kWidthSizedBox,
+                                              Text(
+                                                'Logout',
+                                                style: TextStyle(
+                                                  color: primarycolor,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          content: Text(
+                                            'Sure you want to Logout?',
+                                            style:
+                                                TextStyle(color: primarycolor),
+                                          ),
+                                          actions: [
+                                            InkWell(
+                                              onTap: (() {
+                                                Navigator.pop(context);
+                                                setState(() {});
+                                              }),
+                                              child: Container(
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.05,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.2,
+                                                decoration: BoxDecoration(
+                                                  color: primarycolor,
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                ),
+                                                child: Center(
+                                                  child: Text(
+                                                    'Cancle',
+                                                    style: TextStyle(
+                                                      color: background,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            InkWell(
+                                              onTap: (() async {
+                                                DataBaseHelper.clearAllData();
+                                                SharedPreferences pref =
+                                                    await SharedPreferences
+                                                        .getInstance();
+                                                pref.remove("userMobileNumber");
+                                                // ignore: use_build_context_synchronously
+                                                Navigator.pushReplacement(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const LoginScreen(),
+                                                  ),
+                                                );
+                                              }),
+                                              child: Container(
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.05,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.2,
+                                                decoration: BoxDecoration(
+                                                  color: primarycolor,
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                ),
+                                                child: Center(
+                                                  child: Text(
+                                                    'Ok',
+                                                    style: TextStyle(
+                                                      color: background,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        );
+                                      });
                                 },
                               ),
                             ],

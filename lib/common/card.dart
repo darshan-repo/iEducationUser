@@ -61,7 +61,6 @@ Widget noticeDetailsCard(
                       fontSize: 18,
                       color: primarycolor,
                       fontWeight: FontWeight.w500,
-                      fontFamily: 'Times New Roman',
                     ),
                   ),
                   SizedBox(
@@ -81,12 +80,11 @@ Widget noticeDetailsCard(
                     style: TextStyle(
                       fontSize: 20.sp,
                       color: primarycolor,
-                      fontFamily: 'Times New Roman',
                       fontWeight: FontWeight.w500,
                     ),
                   ),
                   SizedBox(
-                    width: 0.52.sw,
+                    width: 0.55.sw,
                     child: Text(
                       description,
                       style: TextStyle(fontSize: 16.sp),

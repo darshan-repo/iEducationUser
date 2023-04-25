@@ -20,7 +20,7 @@ class StudentProfileWidgetScreen extends StatelessWidget {
           args.length,
           (index) => animation(
             context,
-            seconds: 700,
+            seconds: 400,
             horizontalOffset: -100,
             child: commonTile(context,
                 title: args[index]['title'],

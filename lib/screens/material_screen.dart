@@ -119,7 +119,7 @@ class _MaterialScreenState extends State<MaterialScreen> {
                           pdfUrl:
                               DataBaseHelper.viewMaterialData[index].fileName,
                           title:
-                              '${DataBaseHelper.viewMaterialData[index].subjectName} (${DataBaseHelper.viewResultData[index].semester})',
+                              '${DataBaseHelper.viewMaterialData[index].subjectName} (${DataBaseHelper.viewMaterialData[index].semester})',
                         );
                       },
                       sharePdfOnTap: () async {

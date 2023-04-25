@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:user/common/pdf_viewer_widget.dart';
 import 'package:user/constant.dart';
 
@@ -27,7 +28,10 @@ Future viewPdfs(BuildContext context,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(title ?? ''),
+                    SizedBox(
+                      width: 0.7.sw,
+                      child: Text(title ?? ''),
+                     ),
                     GestureDetector(
                       onTap: () => Navigator.pop(context),
                       child: const Icon(

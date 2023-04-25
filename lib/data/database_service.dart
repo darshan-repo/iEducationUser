@@ -115,6 +115,7 @@ class DataBaseHelper {
           (viewStudentData?.semester == material.semester)) {
         viewMaterialData.clear();
         dummyMaterial.add(material);
+        print('=========>> $dummyMaterial');
       }
     }
     viewMaterialData = dummyMaterial;

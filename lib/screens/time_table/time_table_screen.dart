@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:user/common/appbar.dart';
 import 'package:user/common/widget_animation.dart/fade_animation.dart';
